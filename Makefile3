@@ -12,13 +12,12 @@ all: debug release
 
 debug: $(DEBUG_EXEC)
 
-Kazino-Royal-dbg: Kazino-Royal.cpp
-	g++ $(DEBUG_FLAGS) Kazino-Royal.cpp -o $(DEBUG_EXEC) 
-
+$(DEBUG_EXEC) : $(SOURCE)
+	g++ $(DEBUG_FLAGS) %<-o &@
 release: $(RELEASE_EXEC)
 
-hello: Kazino-Royal.cpp
-	g++ $(RELEASE_FLAGS) Kazino-Royal.cpp -o $(RELEASE_EXEC)
+$(DEBUG_EXEC) : $(SOURCE)
+	g++ $(RELEASE_FLAGS) %<-o &@
 
 clean:
 	rm -f $(RELEASE_EXEC) $(DEBUG_EXEC)
